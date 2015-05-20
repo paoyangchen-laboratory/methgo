@@ -1,8 +1,8 @@
 numpy
-scipy
 matplotlib
 pandas
-pysam==0.7.4
+pysam
 biopython
 pyfasta
+cython
 pybedtools
