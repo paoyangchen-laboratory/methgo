@@ -17,14 +17,14 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
 
     - Installing globally with pip (if you have pip 1.3 or greater installed globally)
 
-        $ [sudo] pip install virtualenv
-        $ virtualenv --no-site-packages --python=python2.7 .venv
+            $ [sudo] pip install virtualenv
+            $ virtualenv --no-site-packages --python=python2.7 .venv
 
     - Installing locally from source
 
-        $ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
-        $ tar xvfz virtualenv-12.1.1.tar.gz
-        $ python virtualenv-12.1.1/virtualenv.py --no-site-packages --python=python2.7 .venv
+            $ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
+            $ tar xvfz virtualenv-12.1.1.tar.gz
+            $ python virtualenv-12.1.1/virtualenv.py --no-site-packages --python=python2.7 .venv
 
 2. Activating the virtual environment
 
