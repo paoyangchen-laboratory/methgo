@@ -41,21 +41,21 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
 
 ## Demo how to use it
 1. Downloading the test data
-2. Running SNP module
+2. Running MET module
 
-        $ methgo snp -g genome.fa demo.sorted.bam
+        $ methgo met genes.gtf genome.fa demo.CGmap
 
-3. Running CNV module
+3. Running TXN module
+
+        $ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l CCA1_binding_site_motif -c demo.CGmap
+
+4. Running CNV module
 
         $ methgo cnv genome.fa.fai demo.sorted.bam
 
-4. Running MLEVEL module
+5. Running SNP module
 
-        $ methgo mlevel genes.gtf genome.fa demo.CGmap
-
-5. Running TXN module
-
-        $ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l CCA1_binding_site_motif -c demo.CGmap
+        $ methgo snp -g genome.fa demo.sorted.bam
 
 ## License
 MIT
