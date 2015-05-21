@@ -5,7 +5,7 @@
 Make sure you've installed [Python 2.7](https://www.python.org/downloads/release/python-279/),
 [samtools](http://sourceforge.net/projects/samtools/files/samtools/1.2/),
 and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.html)
-before you install packages listed below:
+before you install the packages listed below:
 
 - [NumPy](http://www.numpy.org/)
 - [matplotlib](http://matplotlib.org/)
