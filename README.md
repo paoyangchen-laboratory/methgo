@@ -19,11 +19,16 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
         $ git clone git@github.com:wwliao/methgo.git
         $ chmod +x methgo/methgo
 
-- Add this line to ~/.bashrc file
-
-        export PATH=$PATH:~/.local/methgo
+        # Add "export PATH=$PATH:~/.local/methgo" to ~/.bashrc
+        $ source ~/.bashrc
 
 ## Setting up environment
+0. Downloading the test data
+
+        $ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
+        $ tar xvfz methgo_demo.tar.gz
+        $ cd methgo_demo
+
 1. Installing virtualenv
 
         $ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
@@ -36,26 +41,30 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
 
 3. Installing packages
 
-        $ pip install -r methgo/requirements/base.txt
-        $ pip install -r methgo/requirements/addition.txt
+        $ pip install -r ~/.local/methgo/requirements/base.txt
+        $ pip install -r ~/.local/methgo/requirements/addition.txt
 
 ## Demo how to use it
-1. Downloading the test data
-2. Running MET module
+0. Create folder to put the results
 
-        $ methgo met genes.gtf genome.fa demo.CGmap
+        $ mkdir results
+        $ cd results
 
-3. Running TXN module
+1. Running MET module
 
-        $ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l CCA1_binding_site_motif -c demo.CGmap
+        $ methgo met ../data/genes.gtf ../data/genome.fa ../data/demo.CGmap
 
-4. Running CNV module
+2. Running TXN module
 
-        $ methgo cnv genome.fa.fai demo.sorted.bam
+        $ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l CCA1_binding_site_motif -c ../data/demo.CGmap
 
-5. Running SNP module
+3. Running CNV module
 
-        $ methgo snp -g genome.fa demo.sorted.bam
+        $ methgo cnv ../data/genome.fa.fai ../data/demo.sorted.bam
+
+4. Running SNP module
+
+        $ methgo snp -g ../data/genome.fa ../data/demo.sorted.bam
 
 ## License
 MIT
