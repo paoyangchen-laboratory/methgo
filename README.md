@@ -36,7 +36,8 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
 
 3. Installing packages
 
-        $ pip install -r methgo/requirements.txt
+        $ pip install -r methgo/requirements/base.txt
+        $ pip install -r methgo/requirements/addition.txt
 
 ## Demo how to use it
 1. Downloading the test data
