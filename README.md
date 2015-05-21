@@ -1,6 +1,9 @@
 # MethGo: a comprehensive tool for analyzing whole genome bisulfite sequencing data
+
+## Authors
 Ming-Ren Yen, Wen-Wei Liao, Evaline Ju, Fei-Man Hsu, Larry Lam, Pao-Yang Chen
 
+## Affiliation
 Institute of Plant and Microbial Biology, Academia Sinica, Taipei 11529, Taiwan
 
 ## Dependencies
