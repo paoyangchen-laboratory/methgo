@@ -199,7 +199,6 @@ def plot_bar(dataframe, bulk, ctx):
     return ax
 
 def plot_feature_mlevel(bulk, ign, cg_table, chg_table, chh_table):
-    plt.switch_backend('Agg')
     cg = cg_table.mean()
     cg = cg.set_value('genome', np.mean(bulk['CG']))
     cg = cg.set_value('IGN', ign['CG'])
@@ -284,22 +283,70 @@ def plot_bulkhist(bulk):
         fig.suptitle('Methylation Level (0 -> 100%)', x=0.55, y=0.1, fontsize='xx-large', fontweight='bold')
     return fig
 
-def calc_genomewide(ctxstr, cgmap, winsize=25000):
+def calc_genomewide(ctxstr, cgmap, winsize=200000):
     inv_ctxs = {'X': 'CG', 'Y': 'CHG', 'Z': 'CHH'}
-    win_mlevel = defaultdict(lambda: defaultdict(lambda: defaultdict(list)))
-    win_x = defaultdict(list)
-    for chr in ctxstr:
+    win_mlevel = defaultdict(list)
+    win_x = []
+    pos = 0
+    if 'chr' in ctxstr.keys()[0].lower():
+        chrs = sorted(ctxstr.keys(), key=lambda s: s[3:])
+    else:
+        chrs = sorted(ctxstr.keys())
+    #chrs = map(str, range(1, 23)) + ['X', 'Y']
+    for chr in chrs:
         start = 0
         while (start + winsize) <= len(ctxstr[chr]):
-            win_x[chr].append(start+(winsize/2))
+            win_x.append(pos+(winsize/2))
             tmp = defaultdict(list)
             for tag, mlevel in izip(ctxstr[chr][start:start+winsize], cgmap[chr][start:start+winsize]):
                 tag = tag.upper()
                 if tag in inv_ctxs and mlevel != '-':
                     tmp[inv_ctxs[tag]].append(mlevel)
-            win_mlevel[chr][inv_ctxs[tag]].append(np.mean(tmp[inv_ctxs[tag]]))
+            for ctx in ['CG', 'CHG', 'CHH']:
+                win_mlevel[ctx].append(np.mean(tmp[ctx])*100)
             start += winsize
+            pos += winsize
     return win_x, win_mlevel
+
+def plot_genomewide(ctxstr, gpos, gmlevel):
+    colors = { 'CG': ( 38/255, 173/255,  84/255),
+              'CHG': ( 44/255, 180/255, 234/255),
+              'CHH': (249/255,  42/255,  54/255)}
+    if 'chr' in ctxstr.keys()[0].lower():
+        chrs = sorted(ctxstr.keys(), key=lambda s: s[3:])
+    else:
+        chrs = sorted(ctxstr.keys())
+    #chrs = map(str, range(1, 23)) + ['X', 'Y']
+    vlines = [0]
+    for i, chr in enumerate(chrs):
+        vlines.append(vlines[i] + len(ctxstr[chr]))
+    plt.switch_backend('Agg')
+    fig = plt.figure(figsize=(16, 4.5))
+    ax = fig.add_subplot(111)
+    ax.plot(gpos, gmlevel['CG'], color=colors['CG'], linewidth=1.5, label='CG')
+    ax.plot(gpos, gmlevel['CHG'], color=colors['CHG'], linewidth=1.5, label='CHG')
+    ax.plot(gpos, gmlevel['CHH'], color=colors['CHH'], linewidth=1.5, label='CHH')
+    ax.set_ylim(0, 100)
+    ax.set_xlim(0, vlines[-1])
+    for pos in vlines[1:-1]:
+        ax.axvline(x=pos, linestyle='--', linewidth=1.5, color='gray')
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_linewidth(2)
+    ax.spines['left'].set_linewidth(2)
+    ax.spines['left'].set_position(('outward', 10))
+    for label in ax.xaxis.get_ticklabels():
+        label.set_fontweight('bold')
+    for label in ax.yaxis.get_ticklabels():
+        label.set_fontweight('bold')
+    ax.tick_params(direction='out', length=6, width=2, labelsize='large', top='off', right='off', bottom='off')
+    ax.set_xticks([(vlines[i] + vlines[i+1])/2 for i in xrange(len(vlines) - 1)])
+    ax.set_xticklabels(chrs)
+    ax.set_xlabel('Chromosome', fontsize='xx-large', fontweight='bold')
+    ax.set_ylabel('Methylation Level (%)', fontsize='xx-large', fontweight='bold')
+    ax.legend(loc='upper right', fontsize='large', frameon=False)
+    fig.tight_layout()
+    return ax
 
 def main():
     parser = get_parser()
@@ -331,7 +378,11 @@ def main():
     fig = chh_ax.get_figure()
     fig.savefig('{}.feature.CHH.png'.format(root), dpi=300)
     plt.close(fig)
-    gx, gmlevel = calc_genomewide(ctxstr, cgmap)
+    gpos, gmlevel = calc_genomewide(ctxstr, cgmap)
+    gax = plot_genomewide(ctxstr, gpos, gmlevel)
+    fig = gax.get_figure()
+    fig.savefig('{}.genomewide.png'.format(root), dpi=300)
+    plt.close(fig)
 
 if __name__ == '__main__':
     main()
