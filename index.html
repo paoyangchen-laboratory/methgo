@@ -22,10 +22,46 @@
       <h2>
 <a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
 
-<p>Make sure you've installed <a href="https://www.python.org/downloads/release/python-279/">Python 2.7</a>,
+<p>Please install <a href="https://www.python.org/downloads/release/python-279/">Python 2.7</a>,
 <a href="http://sourceforge.net/projects/samtools/files/samtools/1.2/">samtools</a>,
-and <a href="http://bedtools.readthedocs.org/en/latest/content/installation.html">bedtools</a>
-before you install the packages listed below:</p>
+and <a href="http://bedtools.readthedocs.org/en/latest/content/installation.html">bedtools</a>.</p>
+
+<h2>
+<a id="install-methgo" class="anchor" href="#install-methgo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install MethGo</h2>
+
+<pre><code>    $ mkdir ~/.local
+    $ cd ~/.local
+    $ git clone https://github.com/wwliao/methgo.git
+    $ chmod +x methgo/methgo
+    $ echo 'export PATH=$PATH:~/.local/methgo' &gt;&gt; ~/.bashrc
+    $ source ~/.bashrc
+</code></pre>
+
+<h2>
+<a id="set-up-environment-with-a-sample-input-file" class="anchor" href="#set-up-environment-with-a-sample-input-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set up environment with a sample input file</h2>
+
+<ol>
+<li>
+<p>Download the a sample input file</p>
+
+<pre><code>$ cd ~
+$ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
+$ tar xvfz methgo_demo.tar.gz
+$ cd methgo_demo
+</code></pre>
+</li>
+<li>
+<p>Install and activate a virtual environment (10 mins)</p>
+
+<pre><code>$ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
+$ tar xvfz virtualenv-12.1.1.tar.gz
+$ python virtualenv-12.1.1/virtualenv.py --no-site-packages --python=python2.7 .venv
+$ source .venv/bin/activate
+$ pip install -r ~/.local/methgo/requirements/base.txt
+$ pip install -r ~/.local/methgo/requirements/addition.txt
+</code></pre>
+
+<p>MethGo requires the following packages:</p>
 
 <ul>
 <li><a href="http://www.numpy.org/">NumPy</a></li>
@@ -38,87 +74,80 @@ before you install the packages listed below:</p>
 <li><a href="http://cython.org/">Cython</a></li>
 <li><a href="https://pythonhosted.org/pybedtools/">pybedtools</a></li>
 </ul>
-
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
-
-<pre><code>    $ mkdir ~/.local
-    $ cd ~/.local
-    $ git clone https://github.com/wwliao/methgo.git
-    $ chmod +x methgo/methgo
-    $ echo 'export PATH=$PATH:~/.local/methgo' &gt;&gt; ~/.bashrc
-    $ source ~/.bashrc
-</code></pre>
-
-<h2>
-<a id="setting-up-environment" class="anchor" href="#setting-up-environment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Setting up environment</h2>
-
-<ol>
-<li>
-<p>Downloading the test data</p>
-
-<pre><code>$ cd ~
-$ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
-$ tar xvfz methgo_demo.tar.gz
-$ cd methgo_demo
-</code></pre>
-</li>
-<li>
-<p>Installing virtualenv</p>
-
-<pre><code>$ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
-$ tar xvfz virtualenv-12.1.1.tar.gz
-$ python virtualenv-12.1.1/virtualenv.py --no-site-packages --python=python2.7 .venv
-</code></pre>
-</li>
-<li>
-<p>Activating the virtual environment</p>
-
-<pre><code>$ source .venv/bin/activate
-</code></pre>
-</li>
-<li>
-<p>Installing packages</p>
-
-<pre><code>$ pip install -r ~/.local/methgo/requirements/base.txt
-$ pip install -r ~/.local/methgo/requirements/addition.txt
-</code></pre>
 </li>
 </ol>
 
 <h2>
-<a id="demo-how-to-use-it" class="anchor" href="#demo-how-to-use-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo how to use it</h2>
+<a id="tutorial" class="anchor" href="#tutorial" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tutorial</h2>
 
 <ol>
 <li>
 <p>Change to data folder</p>
 
-<pre><code>$ cd data
+<pre><code>$ cd ~/methgo_demo/data
 </code></pre>
 </li>
 <li>
-<p>Running MET module</p>
+<p>Run MET module (5 mins)</p>
 
 <pre><code>$ methgo met genes.gtf genome.fa demo.CGmap
 </code></pre>
+
+<p>Output figures:</p>
+
+<ul>
+<li>Global methylation levels (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.bulk.mean.png">demo.bulk.mean.png</a>)</li>
+<li>Methylation level distribution (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.bulk.hist.png">demo.bulk.hist.png</a>)</li>
+<li>Methylation levels in different genomic regions (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CG.png">demo.feature.CG.png</a>,
+<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHG.png">demo.feature.CHG.png</a>,
+<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHH.png">demo.feature.CHH.png</a>)</li>
+<li>Global methylation level of all chromosomes (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.genomewide.png">demo.genomewide.png</a>)</li>
+</ul>
+
+<p>Output files:</p>
+
+<ul>
+<li>Methylation levels of each gene (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CG.txt">demo.feature.CG.txt</a>,
+<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHG.txt">demo.feature.CHG.txt</a>,
+<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHH.txt">demo.feature.CHH.txt</a>)</li>
+</ul>
 </li>
 <li>
-<p>Running TXN module</p>
+<p>Run TXN module (5 mins)</p>
 
 <pre><code>$ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l ATHB1_binding_site_motif,CCA1_binding_site_motif -c demo.CGmap
 </code></pre>
+
+<p>Output figures:</p>
+
+<ul>
+<li>Methylation level around transcription binding site (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/TXN/demo.CG.txn.png">demo.CG.txn.png</a>, <a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/TXN/demo.CHG.txn.png">demo.CHG.txn.png</a>, <a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/TXN/demo.CHH.txn.png">demo.CG.txn.png</a>)</li>
+</ul>
 </li>
 <li>
-<p>Running CNV module</p>
+<p>Run CNV module (5 mins)</p>
 
 <pre><code>$ methgo cnv genome.fa.fai demo.sorted.bam
 </code></pre>
+
+<p>Output figure:</p>
+
+<ul>
+<li>CNV on all chromosomes (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/CNV/demo.sorted.cov.png">demo.sorted.cov.png</a>)</li>
+</ul>
 </li>
 <li>
-<p>Running SNP module</p>
+<p>Run SNP module (5 mins)</p>
 
 <pre><code>$ methgo snp -g genome.fa demo.sorted.bam
 </code></pre>
+
+<p>Output files:</p>
+
+<ul>
+<li>homozygous SNPs (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/SNP/demo.sorted.homozygous.txt">demo.sorted.homozygous.txt</a>)</li>
+<li>heterozygous SNPs (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/SNP/demo.sorted.heterozygous.txt">demo.sorted.heterozygous.txt</a>)</li>
+</ul>
 </li>
 </ol>
 
@@ -126,6 +155,11 @@ $ pip install -r ~/.local/methgo/requirements/addition.txt
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>MIT</p>
+
+<h2>
+<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
+
+<p>This work was supported by a grant from Academia Sinica, and grants from  MOST-103-2313-B-001-003-MY3 and MOST-103-2633-B-001-002 and NHRI-EX104-10324SC.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/wwliao/methgo">MethGo</a> is maintained by <a href="https://github.com/wwliao">wwliao</a>.</span>
