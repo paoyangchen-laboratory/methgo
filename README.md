@@ -10,7 +10,7 @@ Institute of Plant and Microbial Biology, Academia Sinica, Taipei 11529, Taiwan
 Please install [Python 2.7](https://www.python.org/downloads/release/python-279/),
 [samtools](http://sourceforge.net/projects/samtools/files/samtools/1.2/),
 and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.html).
-MethGo only supports on UNIX/Linux.
+MethGo can be run on UNIX/Linux only.
 
 ## Install MethGo
 
