@@ -2,7 +2,11 @@
 **MethGo** is a comprehensive tool for analyzing whole genome bisulfite sequencing data.
 
 ## Dependencies
-It needs Python 2.7, samtools, bedtools, and the packages listed below:
+Make sure you've installed [Python 2.7](https://www.python.org/downloads/release/python-279/),
+[samtools](http://sourceforge.net/projects/samtools/files/samtools/1.2/),
+and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.html)
+before you install packages listed below:
+
 - [NumPy](http://www.numpy.org/)
 - [matplotlib](http://matplotlib.org/)
 - [pandas](http://pandas.pydata.org/)
