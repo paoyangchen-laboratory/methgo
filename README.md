@@ -10,6 +10,7 @@ Institute of Plant and Microbial Biology, Academia Sinica, Taipei 11529, Taiwan
 Please install [Python 2.7](https://www.python.org/downloads/release/python-279/),
 [samtools](http://sourceforge.net/projects/samtools/files/samtools/1.2/),
 and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.html).
+MethGo only supports on UNIX/Linux.
 
 ## Install MethGo
 
@@ -21,14 +22,14 @@ and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.ht
         $ source ~/.bashrc
 
 ## Set up environment with a sample input file
-0. Download the a sample input file
+0. Download our sample input file
 
         $ cd ~
         $ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
         $ tar xvfz methgo_demo.tar.gz
         $ cd methgo_demo
 
-1. Install and activate a virtual environment (10 mins)
+1. Install and activate the virtual environment (10 mins)
 
         $ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
         $ tar xvfz virtualenv-12.1.1.tar.gz
@@ -37,7 +38,7 @@ and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.ht
         $ pip install -r ~/.local/methgo/requirements/base.txt
         $ pip install -r ~/.local/methgo/requirements/addition.txt
         
-	MethGo requires the following packages:
+	Our virtual environment includes the following packages:
     - [NumPy](http://www.numpy.org/)
 	- [matplotlib](http://matplotlib.org/)
 	- [pandas](http://pandas.pydata.org/)
