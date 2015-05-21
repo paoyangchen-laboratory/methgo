@@ -22,8 +22,7 @@ before you install the packages listed below:
         $ cd ~/.local
         $ git clone https://github.com/wwliao/methgo.git
         $ chmod +x methgo/methgo
-
-        # Add "export PATH=$PATH:~/.local/methgo" to ~/.bashrc
+        $ echo 'export PATH=$PATH:~/.local/methgo >> ~/.bashrc
         $ source ~/.bashrc
 
 ## Setting up environment
