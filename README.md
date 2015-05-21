@@ -45,26 +45,25 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
         $ pip install -r ~/.local/methgo/requirements/addition.txt
 
 ## Demo how to use it
-0. Create folder to put the results
+0. Change to data folder
 
-        $ mkdir results
-        $ cd results
+        $ cd data
 
 1. Running MET module
 
-        $ methgo met ../data/genes.gtf ../data/genome.fa ../data/demo.CGmap
+        $ methgo met genes.gtf genome.fa demo.CGmap
 
 2. Running TXN module
 
-        $ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l CCA1_binding_site_motif -c ../data/demo.CGmap
+        $ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l ATHB1_binding_site_motif,CCA1_binding_site_motif -c demo.CGmap
 
 3. Running CNV module
 
-        $ methgo cnv ../data/genome.fa.fai ../data/demo.sorted.bam
+        $ methgo cnv genome.fa.fai demo.sorted.bam
 
 4. Running SNP module
 
-        $ methgo snp -g ../data/genome.fa ../data/demo.sorted.bam
+        $ methgo snp -g genome.fa demo.sorted.bam
 
 ## License
 MIT
