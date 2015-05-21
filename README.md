@@ -7,10 +7,9 @@ Ming-Ren Yen, Wen-Wei Liao, Evaline Ju, Fei-Man Hsu, Larry Lam, Pao-Yang Chen
 Institute of Plant and Microbial Biology, Academia Sinica, Taipei 11529, Taiwan
 
 ## Dependencies
-Please install [Python 2.7](https://www.python.org/downloads/release/python-279/),
+MethGo is designed for UNIX/Linux. Please install [Python 2.7](https://www.python.org/downloads/release/python-279/),
 [samtools](http://sourceforge.net/projects/samtools/files/samtools/1.2/),
 and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.html).
-MethGo can be run on UNIX/Linux only.
 
 ## Install MethGo
 
@@ -38,7 +37,7 @@ MethGo can be run on UNIX/Linux only.
         $ pip install -r ~/.local/methgo/requirements/base.txt
         $ pip install -r ~/.local/methgo/requirements/addition.txt
         
-	Our virtual environment includes the following packages:
+	The virtual environment includes the following packages:
     - [NumPy](http://www.numpy.org/)
 	- [matplotlib](http://matplotlib.org/)
 	- [pandas](http://pandas.pydata.org/)
@@ -49,7 +48,8 @@ MethGo can be run on UNIX/Linux only.
 	- [pybedtools](https://pythonhosted.org/pybedtools/)
 
 ## Tutorial
-0. Change to data folder
+
+0. Start at the data folder
 
         $ cd ~/methgo_demo/data
 
@@ -91,6 +91,8 @@ MethGo can be run on UNIX/Linux only.
     Output files:
     - homozygous SNPs ([demo.sorted.homozygous.txt](http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo_results/SNP/demo.sorted.homozygous.txt))
     - heterozygous SNPs ([demo.sorted.heterozygous.txt](http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo_results/SNP/demo.sorted.heterozygous.txt))
+
+Thanks for joining the tutorial. Your comments and suggestions are highly appreciated.
 
 ## License
 MIT
