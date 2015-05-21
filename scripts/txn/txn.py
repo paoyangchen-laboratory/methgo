@@ -170,7 +170,7 @@ def procMethBed(strMethBed,ltxns,strPathToTXN):
         for label in ax.yaxis.get_ticklabels():
             label.set_fontweight('bold')
         ax.set_xlim(0,3000)
-        set_ylim(bottom=0)
+        ax.set_ylim(bottom=0)
         plt.tight_layout()
         fig.savefig(strMethBed.rstrip('bed')+'txn.png', dpi=300)
 
