@@ -16,7 +16,7 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
 
         $ mkdir ~/.local
         $ cd ~/.local
-        $ git clone git@github.com:wwliao/methgo.git
+        $ git clone https://github.com/wwliao/methgo.git
         $ chmod +x methgo/methgo
 
         # Add "export PATH=$PATH:~/.local/methgo" to ~/.bashrc
@@ -25,6 +25,7 @@ It needs Python 2.7, samtools, bedtools, and the packages listed below:
 ## Setting up environment
 0. Downloading the test data
 
+        $ cd ~
         $ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
         $ tar xvfz methgo_demo.tar.gz
         $ cd methgo_demo
