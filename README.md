@@ -10,7 +10,7 @@ before you install the packages listed below:
 - [NumPy](http://www.numpy.org/)
 - [matplotlib](http://matplotlib.org/)
 - [pandas](http://pandas.pydata.org/)
-- [pysam](http://pysam.readthedocs.org/)
+- [pysam](http://pysam.readthedocs.org/) == 0.8.0
 - [biopython](http://biopython.org/)
 - [pyfasta](https://pypi.python.org/pypi/pyfasta/)
 - [Cython](http://cython.org/)
