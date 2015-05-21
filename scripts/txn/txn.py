@@ -14,9 +14,7 @@ def convertDir(strDir):
     if strDir == 'C':
         return '+'
     return '-'
-#----------------------------------------------------------------------------
-# main()
-#----------------------------------------------------------------------------
+
 def splitCGmap(strCGmap,nMinCov):
     dCntxtToFout = {}
     dCntxtToCount = {}
@@ -172,18 +170,10 @@ def procMethBed(strMethBed,ltxns,strPathToTXN):
         for label in ax.yaxis.get_ticklabels():
             label.set_fontweight('bold')
         ax.set_xlim(0,3000)
-        if(strCntxt == 'CG'):
-            ax.set_ylim(0,100)
-            ax.yaxis.set_ticklabels(['0','20','40','60','80','100'])
-        else:
-            ax.set_ylim(0,10)
-            ax.yaxis.set_ticklabels(['0','2','4','6','8','10'])
+        set_ylim(bottom=0)
         plt.tight_layout()
         fig.savefig(strMethBed.rstrip('bed')+'txn.png', dpi=300)
 
-#----------------------------------------------------------------------------
-# main()
-#----------------------------------------------------------------------------
 def main():
     parser = get_parser()
     args = parser.parse_args()
@@ -196,8 +186,6 @@ def main():
     #process files
     for strMethBedFile in lOutFiles:
         procMethBed(strMethBedFile,args.txns.split(','),args.txnfiles)
-
-    print '--- END TXN ---'
 
 if __name__ == '__main__':
     main()
