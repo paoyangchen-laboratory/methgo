@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('-w', '--winsize', default=4000000)
+    parser.add_argument('-w', '--winsize', default=200000)
     parser.add_argument('refindex')
     parser.add_argument('bamfile')
     args = parser.parse_args()
@@ -54,7 +54,6 @@ def main():
     ax = fig.add_subplot(111)
     ax.plot(win_x, win_cov, linewidth=1.5, color=(233/255, 69/255, 44/255))
     ax.set_xlim(0, vlines[-1])
-    ax.set_ylim(0, 60)
     for pos in vlines[1:-1]:
         ax.axvline(x=pos, linestyle='--', linewidth=1.5, color='gray')
     ax.spines['top'].set_visible(False)
