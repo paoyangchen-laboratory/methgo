@@ -177,6 +177,7 @@ def plot_bar(dataframe, bulk, ctx):
               'CHG': ( 44/255, 180/255, 234/255),
               'CHH': (249/255,  42/255,  54/255)}
     dataframe = dataframe*100
+    plt.switch_backend('Agg')
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax = dataframe.plot(ax=ax, kind='bar', grid=False, rot=0, color=colors[ctx], ylim=(0, 100))
@@ -198,6 +199,7 @@ def plot_bar(dataframe, bulk, ctx):
     return ax
 
 def plot_feature_mlevel(bulk, ign, cg_table, chg_table, chh_table):
+    plt.switch_backend('Agg')
     cg = cg_table.mean()
     cg = cg.set_value('genome', np.mean(bulk['CG']))
     cg = cg.set_value('IGN', ign['CG'])
@@ -223,6 +225,7 @@ def plot_bulkmean(bulk):
     colors = { 'CG': ( 38/255, 173/255,  84/255),
               'CHG': ( 44/255, 180/255, 234/255),
               'CHH': (249/255,  42/255,  54/255)}
+    plt.switch_backend('Agg')
     fig = plt.figure()
     ax = fig.add_subplot(111)
     ax = bulk_mean.plot(ax=ax, kind='bar', grid=False, rot=0, color=[colors[ctx] for ctx in ['CG', 'CHG', 'CHH']], ylim=(0, 100))
@@ -243,6 +246,7 @@ def plot_bulkhist(bulk):
     colors = { 'CG': ( 38/255, 173/255,  84/255),
               'CHG': ( 44/255, 180/255, 234/255),
               'CHH': (249/255,  42/255,  54/255)}
+    plt.switch_backend('Agg')
     fig = plt.figure(figsize=(8, 3))
     axes = {}
     for i, ctx in enumerate(['CG', 'CHG', 'CHH']):
@@ -305,6 +309,7 @@ def main():
     cgmap = const_cgmap(ctxstr, args.cgmap, args.depth)
     gtftree = const_gtftree(args.gtf)
     bulk = calc_bulk(ctxstr, cgmap)
+    plt.switch_backend('Agg')
     bulk_ax = plot_bulkmean(bulk)
     fig = bulk_ax.get_figure()
     fig.savefig('{}.bulk.mean.png'.format(root), dpi=300)

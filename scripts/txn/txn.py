@@ -138,6 +138,7 @@ def procMethBed(strMethBed,ltxns,strPathToTXN):
     dCntxtToCount,dCntxtToMeth,dCntxtGlobal = getCntxtToCountMeth(strMethBed,strPathToTXN,ltxns)
     for strCntxt in dCntxtToCount.keys():
         linelist = []
+        plt.switch_backend('Agg')
         fig = plt.figure()
         ax = fig.add_subplot(1,1,1)
         plt.axhline(y=dCntxtGlobal[strCntxt],color='gray',ls='dashed',linewidth=2)

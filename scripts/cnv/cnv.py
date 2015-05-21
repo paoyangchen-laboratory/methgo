@@ -32,7 +32,7 @@ def main():
         gcov[chr][pos] = cov
 
     pos = 0
-    chrs = map(str, range(1, 23)) + ['X', 'Y']
+    chrs = sorted(chrlen.keys())
     win_x = []
     win_cov = []
     for chr in chrs:
@@ -45,6 +45,7 @@ def main():
             start += args.winsize
             pos += args.winsize
 
+    plt.switch_backend('Agg')
     root = os.path.splitext(os.path.basename(args.bamfile))[0]
     vlines = [0]
     for i, chr in enumerate(chrs):
@@ -68,7 +69,7 @@ def main():
     ax.tick_params(direction='out', length=6, width=2, labelsize='large', top='off', right='off', bottom='off')
     ax.set_xticks([(vlines[i] + vlines[i+1])/2 for i in xrange(len(vlines) - 1)])
     ax.set_xticklabels(chrs)
-    ax.set_xlabel('Chromosome', fontsize='xx-large', fontweight='bold')
+    #ax.set_xlabel('Chromosome', fontsize='xx-large', fontweight='bold')
     ax.set_ylabel('Coverage', fontsize='xx-large', fontweight='bold')
     fig.tight_layout()
     plt.savefig('{}.cov.png'.format(root), dpi=300)
