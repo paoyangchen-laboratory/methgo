@@ -160,9 +160,6 @@ def calc_mlevel(ctxstr, cgmap, gtftree, pmtsize=1000):
             if (tag in inv_ctxs) and (mask[pos] == 1) and (mlevel != '-'):
                 ign[inv_ctxs[tag]].append(mlevel)
     for ctx in ign:
-        print '{}: {}'.format(ctx, len(ign[ctx]))
-        for feature in counter[ctx]:
-            print '{} {}: {}'.format(ctx, feature, counter[ctx][feature])
         ign[ctx] = np.mean(ign[ctx])
     cg_table = pd.DataFrame(mtable['CG']).T
     cg_table = cg_table[['pmt', 'gene', 'exon', 'intron']]
