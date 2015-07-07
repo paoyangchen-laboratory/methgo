@@ -30,9 +30,9 @@ and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.ht
 
 1. Install and activate the virtual environment (10 mins)
 
-        $ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
-        $ tar xvfz virtualenv-12.1.1.tar.gz
-        $ python virtualenv-12.1.1/virtualenv.py --no-site-packages --python=python2.7 .venv
+        $ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-13.1.0.tar.gz
+        $ tar xvfz virtualenv-13.1.0.tar.gz
+        $ python virtualenv-13.1.0/virtualenv.py --no-site-packages --python=python2.7 .venv
         $ source .venv/bin/activate
         $ pip install -r ~/.local/methgo/requirements/base.txt
         $ pip install -r ~/.local/methgo/requirements/addition.txt
