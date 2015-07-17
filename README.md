@@ -39,6 +39,7 @@ and [bedtools](http://bedtools.readthedocs.org/en/latest/content/installation.ht
         
 	The virtual environment includes the following packages:
     - [NumPy](http://www.numpy.org/)
+    - [SciPy](http://www.scipy.org/)
 	- [matplotlib](http://matplotlib.org/)
 	- [pandas](http://pandas.pydata.org/)
 	- [pysam](http://pysam.readthedocs.org/) == 0.8.0
