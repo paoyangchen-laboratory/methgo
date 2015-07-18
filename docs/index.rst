@@ -6,6 +6,10 @@
 Welcome to MethGo's documentation!
 ==================================
 
+MethGo is a simple and effective tool designed for the analysis of data from
+whole genome bisulfite sequencing (WGBS) and reduced representation bisulfite
+sequencing (RRBS).
+
 Contents:
 
 .. toctree::
