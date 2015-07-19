@@ -55,15 +55,17 @@ def main():
     ax.spines['bottom'].set_linewidth(2)
     ax.spines['left'].set_linewidth(2)
     #n, bins, patches = ax.hist((cg, chg, chh), bins=np.linspace(0, 40, 9), normed=True, cumulative=1, color=[(38/255, 173/255, 84/255), (44/255, 180/255, 234/255), (249/255, 42/255, 54/255)], edgecolor='w', label=['CG', 'CHG', 'CHH'])
-    n, bins = np.histogram(cg, bins=np.linspace(0, 40, 41))
+    maxval = int(max([cg.mean(), chg.mean(), chh.mean()]) + 2*max([cg.std(), chg.std(), chh.std()]))
+    n, bins = np.histogram(cg, bins=np.linspace(0, maxval, maxval+1))
     n = np.cumsum(n[::-1])[::-1]
-    ax.plot(np.arange(0.5, 40, 1), n/num_cg*100, linewidth=2, color=(38/255, 173/255, 84/255), label='CG')
-    n, bins = np.histogram(chg, bins=np.linspace(0, 40, 41))
+    ax.plot(np.arange(0.5, maxval, 1), n/num_cg*100, linewidth=2, color=(38/255, 173/255, 84/255), label='CG')
+    n, bins = np.histogram(chg, bins=np.linspace(0, maxval, maxval+1))
     n = np.cumsum(n[::-1])[::-1]
-    ax.plot(np.arange(0.5, 40, 1), n/num_chg*100, linewidth=2, color=(44/255, 180/255, 234/255), label='CHG')
-    n, bins = np.histogram(chh, bins=np.linspace(0, 40, 41))
+    ax.plot(np.arange(0.5, maxval, 1), n/num_chg*100, linewidth=2, color=(44/255, 180/255, 234/255), label='CHG')
+    n, bins = np.histogram(chh, bins=np.linspace(0, maxval, maxval+1))
     n = np.cumsum(n[::-1])[::-1]
-    ax.plot(np.arange(0.5, 40, 1), n/num_chh*100, linewidth=2, color=(249/255, 42/255, 54/255), label='CHH')
+    ax.plot(np.arange(0.5, maxval, 1), n/num_chh*100, linewidth=2, color=(249/255, 42/255, 54/255), label='CHH')
+    ax.set_xlim(0, maxval)
     ax.set_ylim(0, 100)
     ax.tick_params(direction='out', top='off', right='off', length=5, width=2, labelsize='large')
     ax.set_xlabel('Coverage (x)', size='large', weight='bold')
