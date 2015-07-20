@@ -22,8 +22,7 @@ sequencing (RRBS). MethGo provides 5 major modules:
 
     * COV: Coverage distribution of each cytosine
     * MET: Both global and gene-centric cytosince methylation levels
-    * TXN: Cytosine methylation levels at transcription factor binding sites
-    (TFBSs)
+    * TXN: Cytosine methylation levels at transcription factor binding sites (TFBSs)
     * SNP: Single nucleotide polymorphism (SNP) calling
     * CNV: Copy Number variation calling
 
