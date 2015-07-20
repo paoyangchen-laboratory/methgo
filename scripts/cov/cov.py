@@ -37,14 +37,24 @@ def get_ctxnum(reffile):
         num_chh += len([match.start()-1 for match in re.finditer(r'(?<=([AGT][AGT]G))', fasta[chr])])
     return num_cg, num_chg, num_chh
 
-def main():
-    parser = get_parser()
-    args = parser.parse_args()
-    num_cg, num_chg, num_chh = get_ctxnum(args.fasta)
-    cgmap = pd.read_table(args.cgmap, header=None, usecols=[3, 7], names=['ctx', 'cov'])
-    cg = cgmap[cgmap['ctx'] == 'CG']['cov']
-    chg = cgmap[cgmap['ctx'] == 'CHG']['cov']
-    chh = cgmap[cgmap['ctx'] == 'CHH']['cov']
+def read_ctxcov(cgmapfile):
+    """
+    Read the column of coverage from CGmap file
+    """
+    cgmap = pd.read_table(cgmapfile, header=None, usecols=[3, 7], names=['ctx', 'cov'])
+    cov_cg = cgmap[cgmap['ctx'] == 'CG']['cov']
+    cov_chg = cgmap[cgmap['ctx'] == 'CHG']['cov']
+    cov_chh = cgmap[cgmap['ctx'] == 'CHH']['cov']
+    return cov_cg, cov_chg, cov_chh
+
+def plot_ctxcov(num_cg, num_chg, num_chh, cov_cg, cov_chg, cov_chh):
+    """
+    Plot the CG/CHG/CHH coverage distribution
+    """
+    colors = { 'CG': (38/255, 173/255, 84/255),
+              'CHG': (44/255, 180/255, 234/255),
+              'CHH': (249/255, 42/255, 54/255)}
+
     plt.switch_backend('Agg')
     fig = plt.figure()
     ax = fig.add_subplot(111)
@@ -54,17 +64,16 @@ def main():
     ax.spines['left'].set_position(('outward', 8))
     ax.spines['bottom'].set_linewidth(2)
     ax.spines['left'].set_linewidth(2)
-    #n, bins, patches = ax.hist((cg, chg, chh), bins=np.linspace(0, 40, 9), normed=True, cumulative=1, color=[(38/255, 173/255, 84/255), (44/255, 180/255, 234/255), (249/255, 42/255, 54/255)], edgecolor='w', label=['CG', 'CHG', 'CHH'])
-    maxval = int(max([cg.mean(), chg.mean(), chh.mean()]) + 2*max([cg.std(), chg.std(), chh.std()]))
-    n, bins = np.histogram(cg, bins=np.linspace(0, maxval, maxval+1))
+    maxval = int(max([cov_cg.mean(), cov_chg.mean(), cov_chh.mean()]) + 2*max([cov_cg.std(), cov_chg.std(), cov_chh.std()]))
+    n, bins = np.histogram(cov_cg, bins=np.linspace(0, maxval, maxval+1))
     n = np.cumsum(n[::-1])[::-1]
-    ax.plot(np.arange(0.5, maxval, 1), n/num_cg*100, linewidth=2, color=(38/255, 173/255, 84/255), label='CG')
-    n, bins = np.histogram(chg, bins=np.linspace(0, maxval, maxval+1))
+    ax.plot(np.arange(0.5, maxval, 1), n/num_cg*100, linewidth=2, color=colors['CG'], label='CG')
+    n, bins = np.histogram(cov_chg, bins=np.linspace(0, maxval, maxval+1))
     n = np.cumsum(n[::-1])[::-1]
-    ax.plot(np.arange(0.5, maxval, 1), n/num_chg*100, linewidth=2, color=(44/255, 180/255, 234/255), label='CHG')
-    n, bins = np.histogram(chh, bins=np.linspace(0, maxval, maxval+1))
+    ax.plot(np.arange(0.5, maxval, 1), n/num_chg*100, linewidth=2, color=colors['CHG'], label='CHG')
+    n, bins = np.histogram(cov_chh, bins=np.linspace(0, maxval, maxval+1))
     n = np.cumsum(n[::-1])[::-1]
-    ax.plot(np.arange(0.5, maxval, 1), n/num_chh*100, linewidth=2, color=(249/255, 42/255, 54/255), label='CHH')
+    ax.plot(np.arange(0.5, maxval, 1), n/num_chh*100, linewidth=2, color=colors['CHH'], label='CHH')
     ax.set_xlim(0, maxval)
     ax.set_ylim(0, 100)
     ax.tick_params(direction='out', top='off', right='off', length=5, width=2, labelsize='large')
@@ -72,9 +81,18 @@ def main():
     ax.set_ylabel('Percentage (%)', size='large', weight='bold')
     ax.legend(loc='upper right', prop={'size': 'small'})
     plt.tight_layout()
-    root = os.path.splitext(os.path.basename(args.cgmap))[0]
-    plt.savefig('{}.cov.png'.format(root), dpi=300)
-    return n, bins
+    return ax
+
+def main():
+    parser = get_parser()
+    args = parser.parse_args()
+    num_cg, num_chg, num_chh = get_ctxnum(args.fasta)
+    cov_cg, cov_chg, cov_chh = read_ctxcov(args.cgmap)
+    ctxcov_ax = plot_ctxcov(num_cg, num_chg, num_chh, cov_cg, cov_chg, cov_chh)
+    fig = ctxcov_ax.get_figure()
+    prefix = os.path.splitext(os.path.basename(args.cgmap))[0]
+    fig.savefig('{}.cov.png'.format(prefix), dpi=300)
+    plt.close(fig)
 
 if __name__ == '__main__':
-    n, bins = main()
+    main()
