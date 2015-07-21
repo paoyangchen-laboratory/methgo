@@ -26,6 +26,8 @@ sequencing (RRBS). MethGo provides 5 major modules:
     * SNP: Single nucleotide polymorphism (SNP) calling
     * CNV: Copy Number variation calling
 
+.. image:: _static/overview.svg
+
 Contents:
 
 .. toctree::
