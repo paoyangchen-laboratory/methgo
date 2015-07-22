@@ -1,13 +1,13 @@
 Installation
 ============
 
-#. Obtain Python 2.7 and virturalenv.
+1. Obtain Python 2.7 and virturalenv.
 
   .. note::
     MethGo depends on SAMtools and BEDtools, so please make sure you already
     have them on your server.
 
-#. Create a virtual environment somewhere on your disk, and then activate it.
+2. Create a virtual environment somewhere on your disk, and then activate it.
 
   ::
 
@@ -16,7 +16,7 @@ Installation
   $ source bin/activate
 
 
-#. Download the source code and install the requirements.
+3. Download the source code and install the requirements.
 
   ::
 
