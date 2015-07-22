@@ -11,6 +11,27 @@ determined, the first to identify all the cytosine sites from reference genome,
 and second to extract coverage information from CGmap file. The reverse
 cumulative plot for coverage distributions is reported.
 
+Positional Arguments
+~~~~~~~~~~~~~~~~~~~~
+
+fasta
+"""""
+
+reference genome FASTA file
+
+cgmap
+"""""
+
+CGmap file
+
+Optional Arguments
+~~~~~~~~~~~~~~~~~~
+
+-h, --help
+""""""""""
+
+show this help message and exit
+
 MET
 ---
 
