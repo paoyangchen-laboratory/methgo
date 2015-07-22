@@ -11,8 +11,8 @@ determined, the first to identify all the cytosine sites from reference genome,
 and second to extract coverage information from CGmap file. The reverse
 cumulative plot for coverage distributions is reported.
 
-Positional Arguments
-~~~~~~~~~~~~~~~~~~~~
+Input
+~~~~~
 
 fasta
 """""
@@ -24,13 +24,13 @@ cgmap
 
 CGmap file
 
-Optional Arguments
+Arguments
 ~~~~~~~~~~~~~~~~~~
 
 -h, --help
 """"""""""
 
-show this help message and exit
+Show the help message and exit
 
 MET
 ---
@@ -48,6 +48,42 @@ its gene body methylation level. Promoters with a size specified by the user
 (default is 1000 bp) are then analyzed in the same manner to produce promoter
 methylation levels for each gene. Based on methylation contexts, results of
 gene methylation levels sorted by their gene ID are outputted in a text file. 
+
+Input
+~~~~~
+
+gtf
+"""
+
+GTF file
+
+fasta
+"""""
+
+reference genome FASTA file
+
+cgmap
+"""""
+
+CGmap file
+
+Arguments
+~~~~~~~~~
+
+-d, --depth <INT>
+"""""""""""""""""
+
+Set the minimum read depth, the default value is 4
+
+-p, --pmtsize <INT>
+"""""""""""""""""""
+
+Set the size of promoter, the default value is 1,000
+
+-h, --help
+""""""""""
+
+Show the help message and exit
 
 TXN
 ---
