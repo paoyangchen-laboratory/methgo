@@ -45,9 +45,9 @@ point of methylation. A list of genes and their bounds are generated from the
 gene annotation file in General Transfer Format (GTF). For each gene, all the
 methylation levels of 3 contexts within the gene bounds are averaged to produce
 its gene body methylation level. Promoters with a size specified by the user
-(default is 1000 bp) are then analyzed in the same manner to produce promoter
-methylation levels for each gene. Based on methylation contexts, results of
-gene methylation levels sorted by their gene ID are outputted in a text file. 
+are then analyzed in the same manner to produce promoter methylation levels for
+each gene. Based on methylation contexts, results of gene methylation levels
+sorted by their gene ID are outputted in a text file. 
 
 Input
 ~~~~~
@@ -94,6 +94,36 @@ annotations. The inputs are a CGmap. For each TFBS, the methylation levels of
 sites within 1,500 bp are averaged over tiling windows (30 bp). The methylation
 levels distributions are reported in a scatter plot with smooth curve.
 
+Input
+~~~~~
+
+-t, --txnfiles <PATH>
+"""""""""""""""""""""
+
+Path to the preprocessing TXN files
+
+-l, --txns <LABELS>
+"""""""""""""""""""
+
+List of TXN labels
+
+-c, --cgmap <FILE>
+
+Path to CGmap file
+
+Arguments
+~~~~~~~~~
+
+-h, --help
+""""""""""
+
+Show the help message and exit
+
+-m, --mincov <INT>
+""""""""""""""""""
+
+Set the minimum coverage
+
 CNV
 ---
 
@@ -112,6 +142,33 @@ to limit results (default is 0.95). In this manner, a cutoff sum of bases is
 established so that any window with a sum higher than the cutoff will be
 considered a CNV.
 
+Input
+~~~~~
+
+refindex
+""""""""
+
+
+bamfile
+"""""""
+
+Arguments
+~~~~~~~~~
+
+-w, --winsize <INT>
+"""""""""""""""""""
+
+-p, --pvalue <FLOAT>
+""""""""""""""""""""
+
+-s, --succession <INT>
+""""""""""""""""""""""
+
+-h, --help
+""""""""""
+
+Show the help message and exit
+
 SNP
 ---
 
@@ -128,4 +185,40 @@ two alleles occur with frequencies in the reads within a range close to 0.5. A
 buffer is set (default is 0.1) around 0.5 for the frequencies of the two alleles
 to be within (so default frequencies are 0.4-0.6) to be considered a
 heterozygous SNP.
+
+Input
+~~~~~
+
+bamfile
+"""""""
+
+Input BAM file
+
+-g, --genomeFile <FILE>
+"""""""""""""""""""""""
+
+Input FASTA file
+
+Arguments
+~~~~~~~~~
+
+-c, --coverage <INT>
+""""""""""""""""""""
+
+Coverage or minimum number of reads desired
+
+-m, --majorAlleleFreq <FLOAT>
+"""""""""""""""""""""""""""""
+
+Frequency to be considered homozygous allele
+
+-b, --buffer <FLOAT>
+""""""""""""""""""""
+
+Buffer on either side of 0.5 to be considered heterozygous allele
+
+-h, --help
+""""""""""
+
+Show the help message and exit
 
