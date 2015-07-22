@@ -47,7 +47,8 @@ def main():
         pos = col.pos
         cov = col.n
         chr = bam.getrname(col.tid)
-        gcov[chr][pos] = cov
+        if chr in gcov:
+            gcov[chr][pos] = cov
 
     pos = 0
     chrs = sorted(chrlen.keys(), key=extract_chrnum)
