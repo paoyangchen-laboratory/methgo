@@ -50,7 +50,7 @@ def snpDetermine(aCount, tCount, cCount, gCount, total, refNuc, majorAlleleFreq,
     #homozygous case
     if primary[0] >= majorAlleleFreq and primary[1] != refNuc:
         #print max(freqList)
-        primaryAllele = primary[0]
+        primaryAllele = primary[1]
         secondaryAllele = 'NA'
         snpType = 'homo'
     #heterozygous case
