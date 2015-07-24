@@ -1,187 +1,89 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<!doctype html>
+<html>
   <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>MethGo by wwliao</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
   <body>
-    <section class="page-header">
-      <h1 class="project-name">MethGo</h1>
-      <h2 class="project-tagline">a comprehensive tool for analyzing whole genome bisulfite sequencing data</h2>
-      <a href="https://github.com/wwliao/methgo" class="btn">View on GitHub</a>
-      <a href="https://github.com/wwliao/methgo/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/wwliao/methgo/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
 
-    <section class="main-content">
-      <h2>
-<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span class="octicon octicon-link"></span></a>Authors</h2>
+      <header>
+        <h1>MethGo</h1>
+        <p>a comprehensive tool for analyzing whole-genome bisulfite sequencing data</p>
+      </header>
 
-<p>Ming-Ren Yen, Wen-Wei Liao, Evaline Ju, Fei-Man Hsu, Larry Lam, Pao-Yang Chen</p>
+      <div id="banner">
+        <span id="logo"></span>
 
-<h2>
-<a id="affiliation" class="anchor" href="#affiliation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Affiliation</h2>
+        <a href="https://github.com/wwliao/methgo" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/wwliao/methgo/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/wwliao/methgo/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
 
-<p>Institute of Plant and Microbial Biology, Academia Sinica, Taipei 11529, Taiwan</p>
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a id="methgo" class="anchor" href="#methgo" aria-hidden="true"><span class="octicon octicon-link"></span></a>MethGo</h1>
 
-<h2>
-<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+<p>DNA methylation is a major epigenetic modification regulating several biological
+processes. A standard approach in the study of DNA methylation is bisulfite
+sequencing (BS-Seq). BS-Seq couples bisulfite conversion of DNA with next
+generation sequencing to provide a genome wide profile of DNA methylation at
+single base resolution. The analysis of BS-Seq data involves the use of
+customized aligners for mapping reads and additional bioinformatic pipelines for
+downstream data analysis. While most post-alignment programs generate
+methylation calls, MethGo carries out subsequent genomic and epigenomic analyses
+to comprehensively explore BS-Seq datasets.</p>
 
-<p>MethGo is designed for UNIX/Linux. Please install <a href="https://www.python.org/downloads/release/python-279/">Python 2.7</a>,
-<a href="http://sourceforge.net/projects/samtools/files/samtools/1.2/">samtools</a>,
-and <a href="http://bedtools.readthedocs.org/en/latest/content/installation.html">bedtools</a>.</p>
-
-<h2>
-<a id="install-methgo" class="anchor" href="#install-methgo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install MethGo</h2>
-
-<pre><code>    $ mkdir ~/.local
-    $ cd ~/.local
-    $ git clone https://github.com/wwliao/methgo.git
-    $ chmod +x methgo/methgo
-    $ echo 'export PATH=$PATH:~/.local/methgo' &gt;&gt; ~/.bashrc
-    $ source ~/.bashrc
-</code></pre>
-
-<h2>
-<a id="set-up-environment-with-a-sample-input-file" class="anchor" href="#set-up-environment-with-a-sample-input-file" aria-hidden="true"><span class="octicon octicon-link"></span></a>Set up environment with a sample input file</h2>
-
-<ol>
-<li>
-<p>Download our sample input file</p>
-
-<pre><code>$ cd ~
-$ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
-$ tar xvfz methgo_demo.tar.gz
-$ cd methgo_demo
-</code></pre>
-</li>
-<li>
-<p>Install and activate the virtual environment (10 mins)</p>
-
-<pre><code>$ curl -O https://pypi.python.org/packages/source/v/virtualenv/virtualenv-12.1.1.tar.gz
-$ tar xvfz virtualenv-12.1.1.tar.gz
-$ python virtualenv-12.1.1/virtualenv.py --no-site-packages --python=python2.7 .venv
-$ source .venv/bin/activate
-$ pip install -r ~/.local/methgo/requirements/base.txt
-$ pip install -r ~/.local/methgo/requirements/addition.txt
-</code></pre>
-
-<p>The virtual environment includes the following packages:</p>
+<p>MethGo is a simple and effective tool designed for the analysis of data from
+whole genome bisulfite sequencing (WGBS) and reduced representation bisulfite
+sequencing (RRBS). MethGo provides 5 major modules:</p>
 
 <ul>
-<li><a href="http://www.numpy.org/">NumPy</a></li>
-<li><a href="http://matplotlib.org/">matplotlib</a></li>
-<li><a href="http://pandas.pydata.org/">pandas</a></li>
-<li>
-<a href="http://pysam.readthedocs.org/">pysam</a> == 0.8.0</li>
-<li><a href="http://biopython.org/">biopython</a></li>
-<li><a href="https://pypi.python.org/pypi/pyfasta/">pyfasta</a></li>
-<li><a href="http://cython.org/">Cython</a></li>
-<li><a href="https://pythonhosted.org/pybedtools/">pybedtools</a></li>
+<li>COV: Coverage distribution of each cytosine</li>
+<li>MET: Both global and gene-centric cytosince methylation levels</li>
+<li>TXN: Cytosine methylation levels at transcription factor binding sites (TFBSs)</li>
+<li>SNP: Single nucleotide polymorphism (SNP) calling</li>
+<li>CNV: Copy Number variation calling</li>
 </ul>
-</li>
-</ol>
+
+<p><img src="https://raw.githubusercontent.com/wwliao/methgo/master/docs/_static/overview.png" alt="Overview of MethGo"></p>
+
+<p>MethGo is available under the terms of the MIT license.</p>
 
 <h2>
-<a id="tutorial" class="anchor" href="#tutorial" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tutorial</h2>
-
-<ol>
-<li>
-<p>Start at the data folder</p>
-
-<pre><code>$ cd ~/methgo_demo/data
-</code></pre>
-</li>
-<li>
-<p>Run MET module (5 mins)</p>
-
-<pre><code>$ methgo met genes.gtf genome.fa demo.CGmap
-</code></pre>
-
-<p>Output figures:</p>
+<a id="links" class="anchor" href="#links" aria-hidden="true"><span class="octicon octicon-link"></span></a>Links</h2>
 
 <ul>
-<li>Global methylation levels (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.bulk.mean.png">demo.bulk.mean.png</a>)</li>
-<li>Methylation level distribution (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.bulk.hist.png">demo.bulk.hist.png</a>)</li>
-<li>Methylation levels in different genomic regions (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CG.png">demo.feature.CG.png</a>,
-<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHG.png">demo.feature.CHG.png</a>,
-<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHH.png">demo.feature.CHH.png</a>)</li>
-<li>Global methylation level of all chromosomes (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.genomewide.png">demo.genomewide.png</a>)</li>
+<li><a href="https://methgo.readthedocs.org/">Documentation</a></li>
+<li><a href="https://github.com/wwliao/methgo/">Source code</a></li>
+<li><a href="https://wwliao.github.io/methgo/">Project page</a></li>
 </ul>
-
-<p>Output files:</p>
-
-<ul>
-<li>Methylation levels of each gene (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CG.txt">demo.feature.CG.txt</a>,
-<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHG.txt">demo.feature.CHG.txt</a>,
-<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/MET/demo.feature.CHH.txt">demo.feature.CHH.txt</a>)</li>
-</ul>
-</li>
-<li>
-<p>Run TXN module (5 mins)</p>
-
-<pre><code>$ methgo txn -t ~/.local/methgo/scripts/txn/tair10_txn -l ATHB1_binding_site_motif,CCA1_binding_site_motif -c demo.CGmap
-</code></pre>
-
-<p>Output figures:</p>
-
-<ul>
-<li>Methylation level around transcription binding site (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/TXN/demo.CG.txn.png">demo.CG.txn.png</a>, <a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/TXN/demo.CHG.txn.png">demo.CHG.txn.png</a>, <a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/TXN/demo.CHH.txn.png">demo.CG.txn.png</a>)</li>
-</ul>
-</li>
-<li>
-<p>Run CNV module (5 mins)</p>
-
-<pre><code>$ methgo cnv genome.fa.fai demo.sorted.bam
-</code></pre>
-
-<p>Output figure:</p>
-
-<ul>
-<li>CNV on all chromosomes (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/CNV/demo.sorted.cov.png">demo.sorted.cov.png</a>)</li>
-</ul>
-</li>
-<li>
-<p>Run SNP module (5 mins)</p>
-
-<pre><code>$ methgo snp -g genome.fa demo.sorted.bam
-</code></pre>
-
-<p>Output files:</p>
-
-<ul>
-<li>homozygous SNPs (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/SNP/demo.sorted.homozygous.txt">demo.sorted.homozygous.txt</a>)</li>
-<li>heterozygous SNPs (<a href="http://paoyang.ipmb.sinica.edu.tw/%7Egattaca/methgo_demo_results/SNP/demo.sorted.heterozygous.txt">demo.sorted.heterozygous.txt</a>)</li>
-</ul>
-</li>
-</ol>
-
-<p>Thanks for joining the tutorial. Your comments and suggestions are highly appreciated.</p>
-
-<h2>
-<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
-
-<p>MIT</p>
-
-<h2>
-<a id="acknowledgements" class="anchor" href="#acknowledgements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Acknowledgements</h2>
-
-<p>This work was supported by a grant from Academia Sinica, and grants from  MOST-103-2313-B-001-003-MY3 and MOST-103-2633-B-001-002 and NHRI-EX104-10324SC.</p>
-
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/wwliao/methgo">MethGo</a> is maintained by <a href="https://github.com/wwliao">wwliao</a>.</span>
-
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/wwliao">wwliao</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
       </footer>
-
-    </section>
-
-            <script type="text/javascript">
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
@@ -194,4 +96,3 @@ $ pip install -r ~/.local/methgo/requirements/addition.txt
 
   </body>
 </html>
-
