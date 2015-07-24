@@ -11,7 +11,7 @@ Installation
 
   ::
 
-  $ virturalenv methgo_env
+  $ virturalenv --no-site-packages --python=python2.7 methgo_env
   $ cd methgo_env
   $ source bin/activate
 
@@ -28,6 +28,13 @@ Installation
   $ pip install -r requirements/base.txt
   $ pip install -r requirements/addition.txt
 
+  .. note::
+    If you're using Mac and the OS version is larger than 10.8, run this line
+    before you install the requirements
+
+    ::
+
+    $ export CFLAGS=-Qunused-arguments
 
   pip will install the following packages:
 
