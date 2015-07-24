@@ -1,3 +1,5 @@
+.. image:: https://img.shields.io/github/license/mashape/apistatus.svg
+
 MethGo
 ======
 
@@ -21,7 +23,7 @@ sequencing (RRBS). MethGo provides 5 major modules:
 * SNP: Single nucleotide polymorphism (SNP) calling
 * CNV: Copy Number variation calling
 
-.. image:: docs/_static/overview.png
+.. image:: docs/_static/overview.svg
 
 MethGo is available under the terms of the MIT license.
 
