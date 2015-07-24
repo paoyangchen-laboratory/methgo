@@ -24,7 +24,7 @@ sequencing (RRBS). MethGo provides 5 major modules:
 * MET: Both global and gene-centric cytosince methylation levels
 * TXN: Cytosine methylation levels at transcription factor binding sites (TFBSs)
 * SNP: Single nucleotide polymorphism (SNP) calling
-* CNV: Copy Number variation calling
+* CNV: Copy number variation calling
 
 .. image:: _static/overview.svg
 
