@@ -21,16 +21,12 @@ Installation
   ::
 
   $ git clone https://github.com/wwliao/methgo.git
-  $ cd methgo
-  $ chmod +x methgo
-  $ echo 'export PATH=$PATH:~/.local/methgo' >> ~/.bashrc
-  $ source ~/.bashrc
-  $ pip install -r requirements/base.txt
-  $ pip install -r requirements/addition.txt
+  $ pip install -r methgo/requirements/base.txt
+  $ pip install -r methgo/requirements/addition.txt
 
   .. note::
-    If you're using Mac and the OS version is larger than 10.8, run this line
-    before you install the requirements
+    If you're using Mac and the OS version is larger than 10.8, run the
+    following line before you install the requirements
 
     ::
 
@@ -48,3 +44,4 @@ Installation
   * Cython
   * pybedtools
 
+4. Add <your methgo path> to the PATH environment variable.
