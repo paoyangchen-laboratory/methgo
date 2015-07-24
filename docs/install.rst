@@ -26,7 +26,7 @@ Installation
 
   .. note::
     If you're using Mac and the OS version is larger than 10.8, run the
-    following line before you install the requirements
+    following line before you install the requirements:
 
     ::
 
@@ -34,14 +34,14 @@ Installation
 
   pip will install the following packages:
 
-  * NumPy
-  * SciPy
-  * matplotlib
-  * pandas
-  * PySAM == 0.8.0
-  * Biopython
-  * pyfasta
-  * Cython
-  * pybedtools
+  * `NumPy <http://www.numpy.org/>`_
+  * `SciPy <http://www.scipy.org/>`_
+  * `matplotlib <http://matplotlib.org/>`_
+  * `pandas <http://matplotlib.org/>`_
+  * `PySAM (0.8.0) <http://matplotlib.org/>`_
+  * `Biopython <http://biopython.org/>`_
+  * `pyfasta <https://pypi.python.org/pypi/pyfasta/>`_
+  * `Cython <http://cython.org/>`_
+  * `pybedtools <https://pythonhosted.org/pybedtools/>`_
 
-4. Add <your methgo path> to the PATH environment variable.
+4. Add your MethGo path to the PATH environment variable.
