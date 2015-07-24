@@ -32,6 +32,7 @@ Installation
   pip will install the following packages:
 
   * NumPy
+  * SciPy
   * matplotlib
   * pandas
   * PySAM == 0.8.0
