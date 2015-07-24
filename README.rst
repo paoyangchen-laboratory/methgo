@@ -15,13 +15,13 @@ MethGo is a simple and effective tool designed for the analysis of data from
 whole genome bisulfite sequencing (WGBS) and reduced representation bisulfite
 sequencing (RRBS). MethGo provides 5 major modules:
 
-    * COV: Coverage distribution of each cytosine
-    * MET: Both global and gene-centric cytosince methylation levels
-    * TXN: Cytosine methylation levels at transcription factor binding sites (TFBSs)
-    * SNP: Single nucleotide polymorphism (SNP) calling
-    * CNV: Copy Number variation calling
+* COV: Coverage distribution of each cytosine
+* MET: Both global and gene-centric cytosince methylation levels
+* TXN: Cytosine methylation levels at transcription factor binding sites (TFBSs)
+* SNP: Single nucleotide polymorphism (SNP) calling
+* CNV: Copy Number variation calling
 
-.. image:: _static/overview.svg
+.. image:: _static/overview.png
 
 MethGo is available under the terms of the MIT license.
 
