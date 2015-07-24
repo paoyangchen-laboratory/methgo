@@ -34,6 +34,7 @@ Contents:
     :maxdepth: 2
 
     install
+    tutorial
     guide
 
 Indices and tables
