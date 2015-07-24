@@ -1,4 +1,6 @@
-.. image:: https://img.shields.io/github/license/mashape/apistatus.svg
+.. image:: https://img/shields.io/badge/python-2.7-blue.svg
+
+.. image:: https://img.shields.io/badge/license-MIT-green.svg
 
 MethGo
 ======
