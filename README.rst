@@ -1,4 +1,4 @@
-.. image:: https://img/shields.io/badge/python-2.7-blue.svg
+.. image:: https://img.shields.io/badge/python-2.7-blue.svg
 
 .. image:: https://img.shields.io/badge/license-MIT-green.svg
 
