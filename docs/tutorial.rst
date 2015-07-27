@@ -29,6 +29,10 @@ Tutorial
 
   $ methgo txn -t methgo/scripts/txn/tair10_txn -l ATHB1_binding_site_motif,CCA1_binding_site_motif -c demo.CGmap
 
+  .. image:: _static/demo.CG.txn.png
+  .. image:: _static/demo.CHG.txn.png
+  .. image:: _static/demo.CHH.txn.png
+
 5. Run SNP module:
 
   ::
