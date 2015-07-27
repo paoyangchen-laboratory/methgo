@@ -23,6 +23,13 @@ Tutorial
 
   $ methgo met genes.gtf genome.fa demo.CGmap
 
+  .. image:: _static/demo.bulk.hist.png
+  .. image:: _static/demo.bulk.mean.png
+  .. image:: _static/demo.feature.CG.png
+  .. image:: _static/demo.feature.CHG.png
+  .. image:: _static/demo.feature.CHH.png
+  .. image:: _static/demo.genomewide.png
+
 4. Run TXN module:
 
   ::
