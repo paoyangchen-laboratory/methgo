@@ -44,3 +44,5 @@ Tutorial
   ::
 
   $ methgo cnv genome.fa.fai demo.sorted.bam
+
+  .. image:: _static/demo.sorted.cnv.png
