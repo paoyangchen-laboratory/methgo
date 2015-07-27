@@ -15,6 +15,8 @@ Tutorial
 
   $ methgo cov genome.fa demo.CGmap
 
+  .. image:: _static/demo.cov.png
+
 3. Run MET module:
 
   ::
