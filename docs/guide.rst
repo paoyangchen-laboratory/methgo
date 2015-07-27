@@ -17,12 +17,12 @@ Input
 fasta
 """""
 
-reference genome FASTA file
+Input reference genome FASTA file
 
 cgmap
 """""
 
-CGmap file
+Input CGmap file
 
 Arguments
 ~~~~~~~~~~~~~~~~~~
@@ -55,17 +55,17 @@ Input
 gtf
 """
 
-GTF file
+Input GTF file
 
 fasta
 """""
 
-reference genome FASTA file
+Input reference genome FASTA file
 
 cgmap
 """""
 
-CGmap file
+Input CGmap file
 
 Arguments
 ~~~~~~~~~
@@ -73,12 +73,12 @@ Arguments
 -d, --depth <INT>
 """""""""""""""""
 
-Set the minimum read depth, the default value is 4
+Minimum depth of reads desired, default is 4
 
 -p, --pmtsize <INT>
 """""""""""""""""""
 
-Set the size of promoter, the default value is 1,000
+Size of promoter, default is 1,000
 
 -h, --help
 """"""""""
@@ -133,14 +133,10 @@ genome rearrangement. Inputs include a sorted BAM file and reference genome
 index. The PySAM pileups method is used in order to obtain the number of bases
 for reads at each position in the reference genome. Using the window size given
 by the user (default is 200,000), all the bases of the reads at the positions
-within each window are summed up. This is done by using a given position and the
-window size to calculate which window the position is in. Each window is analyzed
-given an adequate number of bases within the window (default is 3 window sizes).
-The inverse cumulative distribution function is generated from the average sum of
-bases for windows in the entire genome and the probability inputted by the user
-to limit results (default is 0.95). In this manner, a cutoff sum of bases is
-established so that any window with a sum higher than the cutoff will be
-considered a CNV.
+within each window are summed up. The standard Z score is calculated and
+converted to a P-value for each window. If there are 3 windows in a row (user
+can change this default setting) and all their P-values are smaller than a given
+threshold (default is 0.05), then this region is considered a CNV.
 
 Input
 ~~~~~
@@ -148,9 +144,12 @@ Input
 refindex
 """"""""
 
+Input rference genome index file
 
 bamfile
 """""""
+
+Input BAM file
 
 Arguments
 ~~~~~~~~~
@@ -158,11 +157,17 @@ Arguments
 -w, --winsize <INT>
 """""""""""""""""""
 
+Size of tiled window, default is 20,000 bp
+
 -p, --pvalue <FLOAT>
 """"""""""""""""""""
 
+P-value to be considered a possible region, default is 0.05
+
 -s, --succession <INT>
 """"""""""""""""""""""
+
+Number of successive possible regions to be considered a CNV, default is 3
 
 -h, --help
 """"""""""
@@ -197,7 +202,7 @@ Input BAM file
 -g, --genomeFile <FILE>
 """""""""""""""""""""""
 
-Input FASTA file
+Input reference genome FASTA file
 
 Arguments
 ~~~~~~~~~
@@ -205,17 +210,18 @@ Arguments
 -c, --coverage <INT>
 """"""""""""""""""""
 
-Coverage or minimum number of reads desired
+Coverage or minimum number of reads desired, default is 5
 
 -m, --majorAlleleFreq <FLOAT>
 """""""""""""""""""""""""""""
 
-Frequency to be considered homozygous allele
+Frequency to be considered homozygous allele, default is 0.9
 
 -b, --buffer <FLOAT>
 """"""""""""""""""""
 
-Buffer on either side of 0.5 to be considered heterozygous allele
+Buffer on either side of 0.5 to be considered heterozygous allele, default is
+0.1
 
 -h, --help
 """"""""""
