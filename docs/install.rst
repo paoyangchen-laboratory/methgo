@@ -12,7 +12,7 @@ Installation
 
   ::
 
-  $ virturalenv --no-site-packages --python=python2.7 methgo_env
+  $ virtualenv --no-site-packages --python=python2.7 methgo_env
   $ source methgo_env/bin/activate
 
 
