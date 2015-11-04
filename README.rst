@@ -33,5 +33,5 @@ Links
 -----
 
 * `Documentation <https://methgo.readthedocs.org/>`_
-* `Source code <https://github.com/wwliao/methgo/>`_
-* `Project page <https://wwliao.github.io/methgo/>`_
+* `Source code <https://github.com/paoyangchen-laboratory/methgo/>`_
+* `Project page <https://paoyangchen-laboratory.github.io/methgo/>`_
