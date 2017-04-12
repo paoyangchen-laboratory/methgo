@@ -1,4 +1,4 @@
 pysam==0.8.0
 biopython
 pyfasta
-pybedtools
+pybedtools==0.6.9
