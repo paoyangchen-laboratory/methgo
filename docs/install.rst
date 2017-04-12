@@ -20,7 +20,7 @@ Installation
 
   ::
 
-  $ git clone https://github.com/wwliao/methgo.git
+  $ git clone https://github.com/paoyangchen-laboratory/methgo.git
   $ pip install -r methgo/requirements/base.txt
   $ pip install -r methgo/requirements/addition.txt
 
