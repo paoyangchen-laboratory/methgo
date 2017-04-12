@@ -5,7 +5,7 @@ Tutorial
 
   ::
 
-  $ curl -O http://paoyang.ipmb.sinica.edu.tw/~gattaca/methgo_demo.tar.gz
+  $ curl -O http://paoyang.ipmb.sinica.edu.tw/public_data/methgo_demo.tar.gz
   $ tar xvfz methgo_demo.tar.gz
   $ cd methgo_demo/data
 
