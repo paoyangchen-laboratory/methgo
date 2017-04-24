@@ -15,8 +15,9 @@ def get_parser():
     Create a parser and add arguments
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('-d', '--depth', type=int, default=4, help='minimum read depth')
-    parser.add_argument('-p', '--pmtsize', type=int, default=1000, help='promoter size')
+    parser.add_argument('-d', '--depth', type=int, default=4, help='minimum read depth, default: 4')
+    parser.add_argument('-p', '--pmtsize', type=int, default=1000, help='promoter size, default: 1000')
+    parser.add_argument('-w', '--winsize', type=int, default=200000, help='window size, default: 200000')
     parser.add_argument('gtf', help='GTF file')
     parser.add_argument('fasta', help='reference genome FASTA file')
     parser.add_argument('cgmap', help='CGmap file')
@@ -163,8 +164,11 @@ def calc_mlevel(ctxstr, cgmap, gtftree, pmtsize=1000):
             tag = tag.upper()
             if (tag in inv_ctxs) and (mask[pos] == 1) and (mlevel != '-'):
                 ign[inv_ctxs[tag]].append(mlevel)
-    for ctx in ign:
-        ign[ctx] = np.mean(ign[ctx])
+    for ctx in ['CG', 'CHG', 'CHH']:
+            if len(ign[ctx]) > 0:
+                ign[ctx] = np.mean(ign[ctx])
+            else:
+                ign[ctx] = 0.0
     cg_table = pd.DataFrame(mtable['CG']).T
     cg_table = cg_table[['pmt', 'gene', 'exon', 'intron']]
     chg_table = pd.DataFrame(mtable['CHG']).T
@@ -204,6 +208,7 @@ def plot_feature_mlevel(bulk, ign, cg_table, chg_table, chh_table):
     cg = cg.set_value('genome', np.mean(bulk['CG']))
     cg = cg.set_value('IGN', ign['CG'])
     cg = cg[['genome', 'pmt', 'gene', 'exon', 'intron', 'IGN']]
+    cg.to_csv("CG.txt", sep="\t")
     cg_ax = plot_bar(cg, bulk, 'CG')
     chg = chg_table.mean()
     chg = chg.set_value('genome', np.mean(bulk['CHG']))
@@ -427,7 +432,7 @@ def main():
     fig = chh_ax.get_figure()
     fig.savefig('{}.feature.CHH.png'.format(root), dpi=300)
     plt.close(fig)
-    gpos, gmlevel = calc_genomewide(ctxstr, cgmap)
+    gpos, gmlevel = calc_genomewide(ctxstr, cgmap, winsize=args.winsize)
     gax = plot_genomewide(ctxstr, gpos, gmlevel)
     fig = gax.get_figure()
     fig.savefig('{}.genomewide.png'.format(root), dpi=300)
