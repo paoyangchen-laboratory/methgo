@@ -152,9 +152,13 @@ def calc_mlevel(ctxstr, cgmap, gtftree, pmtsize=1000):
                     if not inexon:
                         feature_mlevels[inv_ctxs[tag]]['intron'].append(mlevel)
             for ctx in ['CG', 'CHG', 'CHH']:
-                for feature in feature_mlevels[ctx]:
-                    counter[ctx][feature] += len(feature_mlevels[ctx][feature])
-                    mtable[ctx][gene_id][feature] = np.mean(feature_mlevels[ctx][feature])
+                for feature in ['pmt', 'gene', 'exon', 'intron']:
+                    if feature in feature_mlevels[ctx]:
+                        counter[ctx][feature] += len(feature_mlevels[ctx][feature])
+                        mtable[ctx][gene_id][feature] = np.mean(feature_mlevels[ctx][feature])
+                    else:
+                        counter[ctx][feature] += 0
+                        mtable[ctx][gene_id][feature] = 0.0
         for (pos, (tag, mlevel)) in enumerate(izip(ctxstr[chr], cgmap[chr])):
             tag = tag.upper()
             if (tag in inv_ctxs) and (mask[pos] == 1) and (mlevel != '-'):
