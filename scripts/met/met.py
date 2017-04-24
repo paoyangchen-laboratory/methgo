@@ -357,10 +357,14 @@ def plot_genomewide(ctxstr, gpos, gmlevel):
     colors = { 'CG': ( 38/255, 173/255,  84/255),
               'CHG': ( 44/255, 180/255, 234/255),
               'CHH': (249/255,  42/255,  54/255)}
+    chrs = ctxstr.keys()
+    chrs.sort(cmp=alphanum)
+    """
     if 'chr' in ctxstr.keys()[0].lower():
         chrs = sorted(ctxstr.keys(), key=lambda s: s[3:])
     else:
         chrs = sorted(ctxstr.keys())
+    """
     #chrs = map(str, range(1, 23)) + ['X', 'Y']
     vlines = [0]
     for i, chr in enumerate(chrs):
