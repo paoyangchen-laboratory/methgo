@@ -284,16 +284,60 @@ def plot_bulkhist(bulk):
         fig.suptitle('Methylation Level (0 -> 100%)', x=0.55, y=0.1, fontsize='xx-large', fontweight='bold')
     return fig
 
+# The alphanum algorithm is from http://www.davekoelle.com/alphanum.html
+re_chunk = re.compile("([\D]+|[\d]+)")
+re_letters = re.compile("\D+")
+re_numbers = re.compile("\d+")
+
+def getchunk(item):
+    itemchunk = re_chunk.match(item)
+
+    # Subtract the matched portion from the original string
+    # if there was a match, otherwise set it to ""
+    item = (item[itemchunk.end():] if itemchunk else "")
+    # Don't return the match object, just the text
+    itemchunk = (itemchunk.group() if itemchunk else "")
+
+    return (itemchunk, item)
+
+def alphanum(a, b):
+    n = 0
+
+    while (n == 0):
+        # Get a chunk and the original string with the chunk subtracted
+        (ac, a) = getchunk(a)
+        (bc, b) = getchunk(b)
+
+        # Both items contain only letters
+        if (re_letters.match(ac) and re_letters.match(bc)):
+            n = cmp(ac, bc)
+        else:
+            # Both items contain only numbers
+            if (re_numbers.match(ac) and re_numbers.match(bc)):
+                n = cmp(int(ac), int(bc))
+            # One item has letters and one item has numbers, or one item is empty
+            else:
+                n = cmp(ac, bc)
+
+                # Prevent deadlocks
+                if (n == 0):
+                    n = 1
+
+    return n
+
 def calc_genomewide(ctxstr, cgmap, winsize=200000):
     inv_ctxs = {'X': 'CG', 'Y': 'CHG', 'Z': 'CHH'}
     win_mlevel = defaultdict(list)
     win_x = []
     pos = 0
+    chrs = ctxstr.keys()
+    chrs.sort(cmp=alphanum)
+    """
     if 'chr' in ctxstr.keys()[0].lower():
         chrs = sorted(ctxstr.keys(), key=lambda s: s[3:])
     else:
         chrs = sorted(ctxstr.keys())
-    #chrs = map(str, range(1, 23)) + ['X', 'Y']
+    """
     for chr in chrs:
         start = 0
         while (start + winsize) <= len(ctxstr[chr]):
