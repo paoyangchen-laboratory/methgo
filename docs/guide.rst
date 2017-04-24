@@ -80,6 +80,11 @@ Minimum depth of reads desired, default is 4
 
 Size of promoter, default is 1,000
 
+-w, --winsize <INT>
+"""""""""""""""""""
+
+Size of sliding window, default is 200,000
+
 -h, --help
 """"""""""
 
